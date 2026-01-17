@@ -550,7 +550,8 @@ class SnowflakeSystem {
         this.audioContext = null;
         this.analyser = null;
         this.source = null;
-        this.baseSpeed = 2;
+        this.baseSpeed = 4;
+        this.speedBoost = 1;
         this.tickRate = 16;
         this.lastTick = 0;
         this.enabled = false;
@@ -612,7 +613,7 @@ class SnowflakeSystem {
             this.audioElement = new Audio();
             document.body.appendChild(this.audioElement);
         }
-        this.audioElement.src = 'sounds/clutch.mp3';
+        this.audioElement.src = 'sounds/deykno.mp3';
         this.audioElement.loop = true;
         this.audioElement.volume = 0.6;
         this.audioElement.setAttribute('playsinline', '');
@@ -736,8 +737,10 @@ class SnowflakeSystem {
     }
 
     updateTickRate() {
+        const baseTick = 20;
         if (!this.audioVisualization || !this.analyser) {
-            this.tickRate = 33; // 30fps normal speed
+            this.tickRate = baseTick;
+            this.speedBoost = 1;
             if (this.debugEl) {
                 this.debugEl.style.display = 'none';
             }
@@ -753,13 +756,16 @@ class SnowflakeSystem {
         }
         const rms = Math.sqrt(sum / bufferLength);
         const amplitude = rms * 255;
-        const threshold = 25;
+        const threshold = 35;
         if (amplitude < threshold) {
-            this.tickRate = 33;
+            this.tickRate = baseTick;
+            this.speedBoost = 1;
         } else {
             const normalizedAmplitude = (amplitude - threshold) / (255 - threshold);
-            const speedMultiplier = 1 + normalizedAmplitude * 63 * 2;
-            this.tickRate = 33 / speedMultiplier;
+            const speedMultiplier = 1 + normalizedAmplitude * 3.5;
+            this.speedBoost = 1.5 + normalizedAmplitude * 4.5;
+            const boostedTick = baseTick / speedMultiplier;
+            this.tickRate = Math.max(6, boostedTick);
         }
         if (this.debugEl) {
             this.debugEl.style.display = 'none';
@@ -769,8 +775,9 @@ class SnowflakeSystem {
     update() {
         if (!this.enabled) return;
         this.ensureSnowflakes();
+        const speedFactor = this.baseSpeed * this.speedBoost;
         for (let flake of this.snowflakes) {
-            flake.y += flake.speed * this.baseSpeed;
+            flake.y += flake.speed * speedFactor;
             flake.x += flake.wind;
             if (flake.y > this.canvas.height + 10) {
                 flake.y = -10;

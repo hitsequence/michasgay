@@ -579,6 +579,16 @@ body.console_active::before {
     opacity: 0.8;
 }
 
+.enter_image {
+    width: 160px;
+    height: auto;
+    display: block;
+    max-width: 70vw;
+    border: none;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
+    cursor: pointer;
+}
+
 .top_nav_frame {
     position: absolute;
     top: 10px;
