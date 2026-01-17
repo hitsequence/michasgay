@@ -1,0 +1,151 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@michas</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="top_nav_frame" id="top_nav_frame">
+        <div class="top_nav">
+            <img id="nav1" src="images/nav1.png" alt="nav item 1" class="nav_img">
+            <img id="nav2" src="images/nav2.png" alt="nav item 2" class="nav_img">
+            <img id="nav3" src="images/nav3.png" alt="nav item 3" class="nav_img">
+            <img id="nav4" src="images/nav4.png" alt="nav item 4" class="nav_img">
+        </div>
+    </div>
+    <div id="enter_overlay" class="enter_overlay">
+        <div class="enter_box">
+            <span class="enter_text">[click to enter]</span>
+        </div>
+    </div>
+    <div id="splash_screen" class="splash_screen">
+        <div class="title_bar">
+            <div class="title_left">
+                <img class="title_icon" src="images/loader_ico.png" alt="snowfall icon">
+                <span class="title_text">home</span>
+            </div>
+            <div class="title_controls" aria-hidden="true">
+                <button class="title_btn title_close_btn" type="button">×</button>
+            </div>
+        </div>
+        <div class="splash_content">
+            <div class="activity_card">
+                <div class="activity_body">
+                    <div class="activity_inner_frame">
+                        <div class="activity_inline_row">
+                            <div class="activity_inline_avatar_wrap">
+                                <img id="activity_avatar_inline" class="activity_inline_avatar" src="" alt="avatar">
+                                <span id="activity_status_inline" class="activity_status_inline_dot offline"></span>
+                            </div>
+                            <div class="activity_text">
+                                <div class="activity_display" id="activity_display">loading...</div>
+                                <div id="activity_name" class="activity_name">no activity</div>
+                                <div id="activity_details" class="activity_details"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="splash2" class="splash_screen">
+        <div class="title_bar">
+            <div class="title_left">
+                <img class="title_icon" src="images/loader_ico.png" alt="icon">
+                <span class="title_text">about</span>
+            </div>
+            <div class="title_controls" aria-hidden="true">
+                <button class="title_btn title_close_btn" type="button">×</button>
+            </div>
+        </div>
+        <div class="splash_content">
+            <div class="activity_card">
+                <div class="activity_body">
+                    <div class="activity_inner_frame">
+                        <div class="activity_text">
+                            <div class="activity_display">michas</div>
+                            <div class="activity_details">interactive splash demo</div>
+                            <div class="activity_details">draggable windows • audio visualization</div>
+                            <div class="activity_details">snowflakes • settings panel</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="splash3" class="splash_screen">
+        <div class="title_bar">
+            <div class="title_left">
+                <img class="title_icon" src="images/loader_ico.png" alt="icon">
+                <span class="title_text">image gallery</span>
+            </div>
+            <div class="title_controls" aria-hidden="true">
+                <button class="title_btn title_close_btn" type="button">×</button>
+            </div>
+        </div>
+        <div class="splash_content">
+            <div class="activity_card">
+                <div class="activity_body">
+                    <div class="activity_inner_frame">
+                        <div class="image_viewer" style="min-height:200px;">
+                            <img id="preview3" class="image_preview" src="images/togif.gif" alt="cat preview">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="splash4" class="splash_screen">
+        <div class="title_bar">
+            <div class="title_left">
+                <img class="title_icon" src="images/loader_ico.png" alt="icon">
+                <span class="title_text">settings</span>
+            </div>
+            <div class="title_controls" aria-hidden="true">
+                <button class="title_btn title_close_btn" type="button">×</button>
+            </div>
+        </div>
+        <div class="splash_content">
+            <div class="activity_card">
+                <div class="activity_body">
+                    <div class="activity_inner_frame">
+                        <div class="settings_list">
+                            <label class="setting_row">
+                                <input type="checkbox" id="renderSnowflakes" checked disabled>
+                                <span class="setting_label">Render Snowflakes</span>
+                            </label>
+                            <label class="setting_row">
+                                <input type="checkbox" id="muteMusic">
+                                <span class="setting_label">Mute Music</span>
+                            </label>
+                            <label class="setting_row" id="audioVisRow">
+                                <input type="checkbox" id="visualizeAudio" checked disabled>
+                                <span class="setting_label">Visualize Audio with Snowflakes</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="main_content" class="main_content">
+        <div class="center_box">
+            <img src="images/catesp.gif" alt="Main Image" class="main_image">
+            <button class="main_btn" onclick="window.open('https://discord.gg/qNmMXRETJ3', '_blank')"> discord </button>
+        </div>
+    </div>
+
+    <audio id="background_music" loop="">
+        your browser does not support the audio element
+    </audio>
+
+
+    <script src="js/script.js"></script>
+
+
+
+</body></html>
