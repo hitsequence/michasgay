@@ -1,9 +1,4 @@
 {
-  "functions": {
-    "api/activity.js": {
-      "runtime": "nodejs18.x"
-    }
-  },
   "headers": [
     {
       "source": "/api/activity",
