@@ -20,12 +20,9 @@ const nav3 = document.getElementById('nav3');
 const nav4 = document.getElementById('nav4');
 const SPLASH3_DEFAULT_W = 420;
 const SPLASH3_DEFAULT_H = 300;
-const LANYARD_PROXY_URL = '/api/activity';
 let activityInterval = null;
 let activityTick = null;
 let lastSpotify = null;
-let activityDataCache = null;
-let activityFetchInFlight = null;
 let dragState = { active: false, offsetX: 0, offsetY: 0, nextX: 0, nextY: 0, currentX: 0, currentY: 0, raf: null, target: null };
 const splashState = new Map();
 const windows = [
@@ -425,40 +422,14 @@ function initSettings() {
     updateVisibility();
 }
 
-async function fetch_activity(force = false) {
+async function fetch_activity() {
     if (!activityName || !activityDetails) return;
-    if (activityDataCache && !force) {
-        render_activity(activityDataCache);
-        return;
-    }
-    if (activityFetchInFlight && !force) {
-        await activityFetchInFlight;
-        if (activityDataCache) {
-            render_activity(activityDataCache);
-        }
-        return;
-    }
-    const extractData = (payload) => {
-        if (!payload) throw new Error('empty_payload');
-        if (payload.data) return payload.data;
-        if (payload.success === false) throw new Error('bad_payload');
-        return payload;
-    };
-    const fetchViaProxy = async () => {
-        const url = force ? `${LANYARD_PROXY_URL}?force=1` : LANYARD_PROXY_URL;
-        const res = await fetch(url, { cache: 'no-store' });
-        if (!res.ok) throw new Error('proxy_network');
-        const json = await res.json();
-        return extractData(json);
-    };
-    const performFetch = async () => {
-        const data = await fetchViaProxy();
-        activityDataCache = data;
-        render_activity(activityDataCache);
-    };
-    activityFetchInFlight = performFetch();
     try {
-        await activityFetchInFlight;
+        const res = await fetch('https://api.lanyard.rest/v1/users/1122202569519923361');
+        if (!res.ok) throw new Error('network');
+        const json = await res.json();
+        if (!json || !json.success) throw new Error('bad payload');
+        render_activity(json.data);
     } catch (err) {
         activityDisplay.textContent = 'offline';
         activityName.textContent = 'no activity';
@@ -466,9 +437,6 @@ async function fetch_activity(force = false) {
         setInlineAvatar('https://cdn.discordapp.com/embed/avatars/0.png', 'discord user');
         setInlineStatus('offline');
         lastSpotify = null;
-        activityDataCache = null;
-    } finally {
-        activityFetchInFlight = null;
     }
 }
 
