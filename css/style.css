@@ -401,6 +401,43 @@
     .title_controls {
         display: none !important;
     }
+    
+    body {
+        flex-direction: column;
+        padding: 20px;
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    #splash_screen,
+    #splash2,
+    #splash3,
+    #splash4 {
+        width: min(340px, calc(100% - 40px));
+        height: auto;
+        position: static !important;
+        margin: 0 auto 16px !important;
+        transform: none !important;
+        left: auto !important;
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+    }
+    
+    .splash_screen {
+        width: min(340px, calc(100% - 40px)) !important;
+        max-width: 100%;
+    }
+    
+    .splash_content {
+        height: auto !important;
+        min-height: auto !important;
+    }
+    
+    .activity_card {
+        height: auto !important;
+        min-height: auto !important;
+    }
 }
 
 * {
