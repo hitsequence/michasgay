@@ -83,21 +83,6 @@
     height: 75%;
 }
 
-#splash3 .split_frame_row {
-    height: 90%;
-}
-
-#splash3 .activity_card {
-    height: 90%;
-    flex: 1;
-}
-
-#splash3 .splash_content {
-    flex: 1;
-    height: 90%;
-    align-items: stretch;
-}
-
 .frame_left {
     min-height: 180px;
     height: 100%;
@@ -135,7 +120,6 @@
 
 .image_viewer {
     width: 100%;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -144,10 +128,19 @@
 
 .image_preview {
     width: 100%;
-    height: 100%;
     border: 1px solid var(--outline);
     background: var(--high_contrast);
     object-fit: fill;
+}
+
+#splash3 .image_viewer {
+    min-height: 200px;
+    height: auto;
+}
+
+#splash3 .image_preview {
+    height: auto;
+    object-fit: contain;
 }
 
 .resize_handle {
@@ -316,6 +309,31 @@
     align-items: flex-start;
 }
 
+#splash3 .activity_card,
+#splash3 .activity_body,
+#splash3 .activity_inner_frame {
+    height: auto;
+}
+
+#splash3 .activity_inner_frame {
+    margin-bottom: 12px;
+}
+
+#splash3 .activity_inner_frame:last-child {
+    margin-bottom: 0;
+}
+
+#splash3 .image_viewer {
+    height: auto;
+    max-height: 100%;
+}
+
+#splash3 .image_preview {
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+}
+
 .activity_inline_row {
     display: flex;
     align-items: flex-start;
@@ -407,6 +425,8 @@
         padding: 20px;
         height: auto;
         min-height: 100vh;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
     
     #splash_screen,
@@ -423,7 +443,7 @@
         right: auto !important;
         bottom: auto !important;
     }
-    
+        
     .splash_screen {
         width: min(340px, calc(100% - 40px)) !important;
         max-width: 100%;
@@ -798,7 +818,7 @@ body.console_active::before {
     max-width: 300px;
     width: 100%;
     border: 1px solid var(--inline);
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
 }
 
 .main_btn {
